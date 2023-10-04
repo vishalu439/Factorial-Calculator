@@ -3,7 +3,8 @@ import "./App.css";
 
 export default function App() {
   const [input, setinput] = useState("");
-  const [number, setnumber] = useState(0);
+  const [number, setnumber] = useState(null);
+  const [start, setstart] = useState(false);
   const factorial = useMemo(() => {
     let ans = 1;
     console.log(number);
@@ -17,6 +18,7 @@ export default function App() {
   const clickHandler = () => {
     setnumber(input);
     setinput("");
+    setstart(true)
   };
   return (
     <>
@@ -31,7 +33,7 @@ export default function App() {
           onChange={(e) => setinput(+e.target.value)}
         />
         <button onClick={clickHandler}>calculate factorial</button>
-        {number && <h3>{`${number}!= ${factorial}`}</h3>}
+        { start && (<h3>{`${number}!= ${factorial}`}</h3>)}
       </div>
     </>
   );
